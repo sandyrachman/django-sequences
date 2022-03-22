@@ -57,6 +57,7 @@ def get_next_value(
     *,
     nowait=False,
     using=None,
+    overrite=None,
 ):
     """
     Return the next value for a given sequence.
@@ -128,6 +129,8 @@ def get_next_value(
                 sequence.last += 1
                 if reset_value is not None and sequence.last >= reset_value:
                     sequence.last = initial_value
+                if overrite is not None:
+                    sequence.last = overrite
                 sequence.save()
 
             return sequence.last
